@@ -1,4 +1,11 @@
-import '../css/main.sass';
+import "../css/main.sass";
 import "../bootstrap/css/bootstrap.min.css"
+import handleLogo from "./handleLogo";
+import handlePictures from "./handlePictures";
 
-console.log('a');
+document.addEventListener("DOMContentLoaded", function () {
+
+    handleLogo();
+    handlePictures();
+
+});

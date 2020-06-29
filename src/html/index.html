@@ -18,13 +18,14 @@
     <div class="row py-3 px-3 bg-dark">
         <aside class="sidebar col-2 py-3 bg-secondary">
             <div class="sidebar__logo">
-                <button class="sidebar__logo__button btn bg bg-dark text-white">Add logo</button>
-                <div class="sidebar__logo__container">
-                    Your Logo
-                </div>
+                <label for="logo" class="bg-dark p-2 text-white">Add logo</label>
+                <input type="file" name="logo" id="logo" class="sidebar__logo__input d-none" accept=".png, .jpg, .jpeg">
+                <img class="sidebar__logo__container d-block" src="#" alt="Your Logo">
             </div>
             <div class="sidebar__pictures pt-2">
-                <button class="sidebar__pictures__button btn bg bg-dark text-white">Add pictures</button>
+                <label for="pictures" class="bg-dark p-2 text-white">Add pictures</label>
+                <input type="file" name="pictures" id="pictures" class="sidebar__pictures__input d-none"
+                       accept=".png, .jpg, .jpeg" multiple>
                 <div class="sidebar__pictures__container">
                     Your pictures
                 </div>
