@@ -17,10 +17,14 @@
 <main class="container-fluid py-3 px-4">
     <div class="row py-3 px-3 bg-dark">
         <aside class="sidebar col-2 py-3 bg-secondary">
-            <div class="sidebar__logo">
+            <div class="sidebar__logo position-relative">
                 <label for="logo" class="bg-dark p-2 text-white">Add logo</label>
                 <input type="file" name="logo" id="logo" class="sidebar__logo__input d-none" accept=".png, .jpg, .jpeg">
                 <img class="sidebar__logo__container d-block" src="#" alt="Your Logo">
+                <div class="sidebar__logo__container__panel position-absolute fixed-bottom invisible">
+                    <button class="bg-info text-white ">E</button>
+                    <button class="bg-danger text-white">D</button>
+                </div>
             </div>
             <div class="sidebar__pictures pt-2">
                 <label for="pictures" class="bg-dark p-2 text-white">Add pictures</label>
@@ -35,8 +39,9 @@
             <div class="work-space__panel bg-secondary">
                 panel
             </div>
-            <div class="work-space__sheet bg-secondary my-2">
-                canvas
+            <div class="work-space__sheet bg-info my-2">
+                <canvas class="workspace">
+                </canvas>
             </div>
         </section>
     </div>

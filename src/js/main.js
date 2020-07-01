@@ -1,11 +1,15 @@
 import "../css/main.sass";
 import "../bootstrap/css/bootstrap.min.css"
-import handleLogo from "./handleLogo";
-import handlePictures from "./handlePictures";
+import handleAddPictures from "./handlePictures";
+import {Logo} from "./Logo";
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    handleLogo();
-    handlePictures();
+    const myLogo = new Logo();
+
+    const logoInput = myLogo.input;
+    const logoContainer = myLogo.container;
+    logoInput.addEventListener("change", myLogo.changeLogoSrc.bind(myLogo));
+    logoContainer.addEventListener("click", myLogo.handleClick.bind(myLogo));
 
 });
