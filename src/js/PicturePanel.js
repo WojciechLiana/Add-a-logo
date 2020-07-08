@@ -12,7 +12,8 @@ PicturePanel.prototype.updatePicture = function () {
         if (this.picturesInput.files.hasOwnProperty(picture)) {
             const Image = new Picture();
             this.picturesContainer.appendChild(Image.createPictureFrame());
-            Image.updateImage(Image.frame, URL.createObjectURL(this.picturesInput.files[picture]));
+            const image = this.picturesContainer.lastElementChild.firstElementChild;
+            Image.updateImage(image, URL.createObjectURL(this.picturesInput.files[picture]));
             Image.onload = function () {
                 URL.revokeObjectURL(this.src);
             }
