@@ -17,5 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
     myLogo.editBtn.addEventListener("click", myWorkspace.addLogoToWorkspace.bind(myWorkspace, myLogo.container));
     myWorkspace.workspaceClearBtn.addEventListener("click", myWorkspace.clearWorkspace.bind(myWorkspace));
     myPicturesPanel.picturesInput.addEventListener("change", myPicturesPanel.updatePicture.bind(myPicturesPanel));
+    myPicturesPanel.picturesContainer.addEventListener("click", myPicturesPanel.handlePictureClick.bind(myWorkspace));
 
 });
