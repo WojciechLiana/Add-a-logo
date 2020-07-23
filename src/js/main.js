@@ -1,22 +1,17 @@
 import "../css/main.sass";
 import "../bootstrap/css/bootstrap.min.css"
-import {Logo} from "./Logo";
 import {Workspace} from "./Workspace";
 import {PicturePanel} from "./PicturePanel";
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    const myLogo = new Logo();
     const myWorkspace = new Workspace();
-    const myPicturesPanel = new PicturePanel();
+    const myImagesPanel = new PicturePanel("imagesPanel");
+    const myLogoPanel = new PicturePanel("logoPanel");
 
-
-    myLogo.input.addEventListener("change", myLogo.changeLogoSrc.bind(myLogo));
-    myLogo.container.addEventListener("click", myLogo.handleClick.bind(myLogo));
-    myLogo.deleteBtn.addEventListener("click", myLogo.deleteLogo.bind(myLogo));
-    myLogo.editBtn.addEventListener("click", myWorkspace.addLogoToWorkspace.bind(myWorkspace, myLogo.container));
     myWorkspace.workspaceClearBtn.addEventListener("click", myWorkspace.clearWorkspace.bind(myWorkspace));
-    myPicturesPanel.picturesInput.addEventListener("change", myPicturesPanel.updatePicture.bind(myPicturesPanel));
-    myPicturesPanel.picturesContainer.addEventListener("click", myPicturesPanel.handlePictureClick.bind(myWorkspace));
-
+    myImagesPanel.imagesInput.addEventListener("change", myImagesPanel.updatePicture.bind(myImagesPanel));
+    myLogoPanel.logoInput.addEventListener("change", myLogoPanel.updatePicture.bind(myLogoPanel));
+    myImagesPanel.imagesContainer.addEventListener("click", myImagesPanel.handlePictureClick.bind(myWorkspace));
+    myLogoPanel.logoContainer.addEventListener("click", myLogoPanel.handlePictureClick.bind(myWorkspace));
 });
