@@ -1,3 +1,5 @@
+import {WorkspacePanel} from "./WorkspacePanel";
+
 export function Workspace() {
 
     this.workspaceImageDiv = document.querySelector(".workspace-image");
@@ -12,16 +14,20 @@ export function Workspace() {
 
 Workspace.prototype.addImageToWorkspace = function (picture, container) {
 
-    Workspace.prototype.removeImage.bind(this)();
+    WorkspacePanel.prototype.removeImage.bind(this)();
     Workspace.prototype.addNewPicture.bind(this, container, picture)();
     Workspace.prototype.adjustImageSize.bind(this, picture)();
+    if (this.isLogoLoaded) {
+        const logo = this.workspaceLogoDiv.firstElementChild;
+        Workspace.prototype.adjustLogoSizeToImage.bind(this, logo)();
+    }
     this.isImageLoaded = true;
 
 };
 
 Workspace.prototype.addLogoToWorkspace = function (logo, container) {
 
-    Workspace.prototype.removeLogo.bind(this)();
+    WorkspacePanel.prototype.removeLogo.bind(this)();
     Workspace.prototype.addNewPicture.bind(this, container, logo)();
     Workspace.prototype.adjustLogoSize.bind(this, logo)();
     this.isLogoLoaded = true;
@@ -90,27 +96,4 @@ Workspace.prototype.calculateScalePicture = function (imageToBeScaled) {
     const heightScale = imageToBeScaled.naturalHeight / this.workspaceImageDiv.clientHeight;
     return widthScale >= heightScale ? widthScale : heightScale;
 
-};
-
-Workspace.prototype.clearWorkspace = function () {
-
-    Workspace.prototype.removeImage.bind(this)();
-    Workspace.prototype.removeLogo.bind(this)();
-    this.addImageToWorkspace = false;
-    this.addLogoToWorkspace = false;
-
-};
-
-Workspace.prototype.removeImage = function () {
-
-    if (this.workspaceImageDiv.hasChildNodes()) {
-        this.workspaceImageDiv.removeChild(this.workspaceImageDiv.firstChild);
-    }
-};
-
-Workspace.prototype.removeLogo = function () {
-
-    if (this.workspaceLogoDiv.hasChildNodes()) {
-        this.workspaceLogoDiv.removeChild(this.workspaceLogoDiv.firstChild);
-    }
 };
