@@ -80,7 +80,7 @@ PicturePanel.prototype.deletePictureClick = function (event) {
 PicturePanel.prototype.editPictureClick = function (event) {
 
     if(event.target.parentElement.parentElement.parentElement.classList.contains("sidebar__pictures__container")){
-        Workspace.prototype.addPictureToWorkspace
+        Workspace.prototype.addImageToWorkspace
             .bind(this, event.target.parentElement.previousElementSibling, this.workspaceImageDiv)();
     } else if (event.target.parentElement.parentElement.parentElement.classList.contains("sidebar__logo__container")) {
         Workspace.prototype.addLogoToWorkspace
