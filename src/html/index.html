@@ -32,8 +32,12 @@
             </div>
         </aside>
         <section class="work-space col-10 pr-0">
-            <div class="work-space__panel bg-secondary">
+            <div class="work-space__panel bg-secondary d-flex">
                 <button class="my-2 mx-2 bg-dark text-white border-0 work-space__panel__clear">Clear Workspace</button>
+                <div class="work-space__panel__slider my-2 invisible">
+                    <span class="work-space__panel__slider-label text-white">Logo size:</span>
+                    <input type="range" min="1" max="100" value="30" class="work-space__panel__slider-input text-danger">
+                </div>
             </div>
             <div class="work-space__sheet bg-info my-2">
                 <div class="workspace-image">

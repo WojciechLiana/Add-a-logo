@@ -1,6 +1,6 @@
 import {WorkspacePanel} from "./WorkspacePanel";
 
-export function Workspace() {
+export function Workspace(myWorkspacePanel) {
 
     this.workspaceImageDiv = document.querySelector(".workspace-image");
     this.workspaceLogoDiv = document.querySelector(".workspace-logo");
@@ -9,6 +9,7 @@ export function Workspace() {
     this.workspaceImage = "";
     this.isImageLoaded = false;
     this.isLogoLoaded = false;
+    this.workspacePanel = myWorkspacePanel;
 
 }
 
@@ -18,8 +19,10 @@ Workspace.prototype.addImageToWorkspace = function (picture, container) {
     Workspace.prototype.addNewPicture.bind(this, container, picture)();
     Workspace.prototype.adjustImageSize.bind(this, picture)();
     if (this.isLogoLoaded) {
+        const sliderValue = this.workspacePanel.workspaceSlider.value / 100;
         const logo = this.workspaceLogoDiv.firstElementChild;
-        Workspace.prototype.adjustLogoSizeToImage.bind(this, logo)();
+        Workspace.prototype.adjustLogoSizeToImage.bind(this, logo, sliderValue)();
+        WorkspacePanel.prototype.showWorkspaceRangeInput.bind(this.workspacePanel)();
     }
     this.isImageLoaded = true;
 
@@ -51,7 +54,9 @@ Workspace.prototype.adjustImageSize = function (picture) {
 Workspace.prototype.adjustLogoSize = function (logo) {
 
     if (this.isImageLoaded) {
-        Workspace.prototype.adjustLogoSizeToImage.bind(this, logo)();
+        const sliderValue = this.workspacePanel.workspaceSlider.value / 100;
+        Workspace.prototype.adjustLogoSizeToImage.bind(this, logo, sliderValue)();
+        WorkspacePanel.prototype.showWorkspaceRangeInput.bind(this.workspacePanel)();
     } else {
         Workspace.prototype.adjustLogoSizeWhenNoImage.bind(this, logo)();
     }
@@ -66,12 +71,12 @@ Workspace.prototype.adjustLogoSizeWhenNoImage = function (logo) {
 
 };
 
-Workspace.prototype.adjustLogoSizeToImage = function (logo) {
+Workspace.prototype.adjustLogoSizeToImage = function (logo, sliderValue) {
 
     const adjustment = Workspace.prototype.calculateLogoSizeToImgSize.bind(this, logo)();
     const logoElement = this.workspaceLogoDiv.firstChild;
     Workspace.prototype.changePictureSize(
-        logoElement, logo.naturalWidth / adjustment * 0.9, logo.naturalHeight / adjustment * 0.9);
+        logoElement, logo.naturalWidth / adjustment * sliderValue, logo.naturalHeight / adjustment * sliderValue);
 
 };
 
@@ -96,4 +101,10 @@ Workspace.prototype.calculateScalePicture = function (imageToBeScaled) {
     const heightScale = imageToBeScaled.naturalHeight / this.workspaceImageDiv.clientHeight;
     return widthScale >= heightScale ? widthScale : heightScale;
 
+};
+
+Workspace.prototype. handleClearButton = function () {
+
+    this.isLogoLoaded = false;
+    this.isImageLoaded = false;
 };
