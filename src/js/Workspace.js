@@ -5,11 +5,12 @@ export function Workspace(myWorkspacePanel) {
     this.workspaceImageDiv = document.querySelector(".workspace-image");
     this.workspaceLogoDiv = document.querySelector(".workspace-logo");
     this.workspaceClearBtn = document.querySelector(".work-space__panel__clear");
-    this.workspaceLogo = "";
-    this.workspaceImage = "";
     this.isImageLoaded = false;
     this.isLogoLoaded = false;
     this.workspacePanel = myWorkspacePanel;
+    this.isMouseDownOnLogo = false;
+    this.mousePosition = {};
+    this.offset = {};
 
 }
 
@@ -103,8 +104,67 @@ Workspace.prototype.calculateScalePicture = function (imageToBeScaled) {
 
 };
 
-Workspace.prototype. handleClearButton = function () {
+Workspace.prototype.handleClearButton = function () {
 
     this.isLogoLoaded = false;
     this.isImageLoaded = false;
+};
+
+Workspace.prototype.moveLogoMouseDown = function (mouseMoveFnc, event) {
+
+    if (event.target.tagName === "IMG" && this.isImageLoaded) {
+        this.isMouseDownOnLogo = true;
+        this.offset.X = event.target.offsetLeft - event.clientX;
+        this.offset.Y = event.target.offsetTop - event.clientY;
+        document.addEventListener("mousemove", mouseMoveFnc);
+    }
+
+};
+
+Workspace.prototype.moveLogoMouseMove = function (mouseMoveEvent) {
+
+    mouseMoveEvent.preventDefault();
+
+    if (this.isMouseDownOnLogo) {
+        const logo = this.workspaceLogoDiv.firstElementChild;
+        const currentLeftPosition = Workspace.prototype.calculateLogoLeftPosition.bind(this, mouseMoveEvent)();
+        const currentTopPosition = Workspace.prototype.calculateLogoTopPosition.bind(this, mouseMoveEvent)();
+        logo.style.left = `${currentLeftPosition}px`;
+        logo.style.top = `${currentTopPosition}px`;
+    }
+};
+
+Workspace.prototype.calculateLogoLeftPosition = function (event) {
+
+    const image = this.workspaceImageDiv.firstElementChild;
+    const logo = this.workspaceLogoDiv.firstElementChild;
+    this.mousePosition.X = event.clientX;
+    if (this.mousePosition.X + this.offset.X <= 0) {
+        return 0;
+    } else if (image.width - logo.width - this.mousePosition.X - this.offset.X < 0) {
+        return image.width - logo.width;
+    } else {
+        return this.mousePosition.X + this.offset.X;
+    }
+};
+
+Workspace.prototype.calculateLogoTopPosition = function (event) {
+
+    const image = this.workspaceImageDiv.firstElementChild;
+    const logo = this.workspaceLogoDiv.firstElementChild;
+    this.mousePosition.Y = event.clientY;
+    if (this.mousePosition.Y + this.offset.Y <= 0) {
+        return 0;
+    } else if (image.height - logo.height - this.mousePosition.Y - this.offset.Y < 0) {
+        return image.height - logo.height;
+    } else {
+        return this.mousePosition.Y + this.offset.Y;
+    }
+};
+
+Workspace.prototype.moveLogoMouseUp = function (mouseMoveFnc, event) {
+
+    this.isMouseDownOnLogo = false;
+    document.removeEventListener("mousemove", mouseMoveFnc);
+
 };

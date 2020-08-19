@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const myImagesPanel = new PicturePanel("imagesPanel");
     const myLogoPanel = new PicturePanel("logoPanel");
 
+    const mouseMoveFnc = myWorkspace.moveLogoMouseMove.bind(myWorkspace);
+
     myWorkspacePanel.workspaceClearBtn.addEventListener("click", myWorkspacePanel.handleClearWorkspaceBtn.bind(myWorkspacePanel));
     myWorkspacePanel.workspaceClearBtn.addEventListener("click", myWorkspace.handleClearButton.bind(myWorkspace));
     myWorkspacePanel.workspaceSlider.addEventListener("input", myWorkspacePanel.handleSlider.bind(myWorkspacePanel));
@@ -18,4 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
     myLogoPanel.logoInput.addEventListener("change", myLogoPanel.updatePicture.bind(myLogoPanel));
     myImagesPanel.imagesContainer.addEventListener("click", myImagesPanel.handlePictureClick.bind(myWorkspace));
     myLogoPanel.logoContainer.addEventListener("click", myLogoPanel.handlePictureClick.bind(myWorkspace));
+    myWorkspace.workspaceLogoDiv.addEventListener("mousedown", myWorkspace.moveLogoMouseDown.bind(myWorkspace, mouseMoveFnc));
+    document.addEventListener("mouseup", myWorkspace.moveLogoMouseUp.bind(myWorkspace, mouseMoveFnc));
 });
