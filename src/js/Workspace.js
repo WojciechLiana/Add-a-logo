@@ -56,6 +56,7 @@ Workspace.prototype.adjustLogoSize = function (logo) {
 
     if (this.isImageLoaded) {
         const sliderValue = this.workspacePanel.workspaceSlider.value / 100;
+        Workspace.prototype.setElementLeftTopPosition(logo, 0, 0);
         Workspace.prototype.adjustLogoSizeToImage.bind(this, logo, sliderValue)();
         WorkspacePanel.prototype.showWorkspaceRangeInput.bind(this.workspacePanel)();
     } else {
@@ -76,6 +77,7 @@ Workspace.prototype.adjustLogoSizeToImage = function (logo, sliderValue) {
 
     const adjustment = Workspace.prototype.calculateLogoSizeToImgSize.bind(this, logo)();
     const logoElement = this.workspaceLogoDiv.firstChild;
+    Workspace.prototype.setElementLeftTopPosition(logo, 0, 0);
     Workspace.prototype.changePictureSize(
         logoElement, logo.naturalWidth / adjustment * sliderValue, logo.naturalHeight / adjustment * sliderValue);
 
@@ -129,8 +131,7 @@ Workspace.prototype.moveLogoMouseMove = function (mouseMoveEvent) {
         const logo = this.workspaceLogoDiv.firstElementChild;
         const currentLeftPosition = Workspace.prototype.calculateLogoLeftPosition.bind(this, mouseMoveEvent)();
         const currentTopPosition = Workspace.prototype.calculateLogoTopPosition.bind(this, mouseMoveEvent)();
-        logo.style.left = `${currentLeftPosition}px`;
-        logo.style.top = `${currentTopPosition}px`;
+        Workspace.prototype.setElementLeftTopPosition(logo, currentLeftPosition, currentTopPosition);
     }
 };
 
@@ -167,4 +168,10 @@ Workspace.prototype.moveLogoMouseUp = function (mouseMoveFnc, event) {
     this.isMouseDownOnLogo = false;
     document.removeEventListener("mousemove", mouseMoveFnc);
 
+};
+
+Workspace.prototype.setElementLeftTopPosition = function (element, leftPosition, topPosition) {
+
+    element.style.left = `${leftPosition}px`;
+    element.style.top = `${topPosition}px`;
 };
