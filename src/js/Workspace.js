@@ -23,7 +23,7 @@ Workspace.prototype.addImageToWorkspace = function (picture, container) {
         const sliderValue = this.workspacePanel.workspaceSlider.value / 100;
         const logo = this.workspaceLogoDiv.firstElementChild;
         Workspace.prototype.adjustLogoSizeToImage.bind(this, logo, sliderValue)();
-        WorkspacePanel.prototype.showWorkspaceRangeInput.bind(this.workspacePanel)();
+        WorkspacePanel.prototype.showWorkspaceRangeInputAndSave.bind(this.workspacePanel)();
     }
     this.isImageLoaded = true;
 
@@ -58,7 +58,7 @@ Workspace.prototype.adjustLogoSize = function (logo) {
         const sliderValue = this.workspacePanel.workspaceSlider.value / 100;
         Workspace.prototype.setElementLeftTopPosition(logo, 0, 0);
         Workspace.prototype.adjustLogoSizeToImage.bind(this, logo, sliderValue)();
-        WorkspacePanel.prototype.showWorkspaceRangeInput.bind(this.workspacePanel)();
+        WorkspacePanel.prototype.showWorkspaceRangeInputAndSave.bind(this.workspacePanel)();
     } else {
         Workspace.prototype.adjustLogoSizeWhenNoImage.bind(this, logo)();
     }
