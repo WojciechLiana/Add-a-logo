@@ -18,39 +18,41 @@ PicturePanel.prototype.updatePicture = function () {
     if (this.panelName === "imagesPanel") {
         PicturePanel.prototype.updateImages.bind(this)();
     } else if (this.panelName === "logoPanel") {
-        PicturePanel.prototype.deleteLogoBeforeNew(this.logoContainer);
-        PicturePanel.prototype.updateLogo.bind(this)();
+        const isLogoChosen = this.logoInput.files[0];
+        if (isLogoChosen) {
+            PicturePanel.prototype.deleteLogoBeforeNew(this.logoContainer);
+            PicturePanel.prototype.updateLogo.bind(this)();
+        }
     }
-
 };
 
 PicturePanel.prototype.deleteLogoBeforeNew = function (logoContainer) {
 
-    logoContainer.removeChild(logoContainer.firstChild);
+    if (logoContainer.firstChild) {
+        logoContainer.removeChild(logoContainer.firstChild);
+    }
 };
 
 PicturePanel.prototype.updateLogo = function () {
 
-    const Logo = new Picture();
-    this.logoContainer.appendChild(Logo.createPictureFrame());
-    const logo = this.logoContainer.firstElementChild.firstElementChild;
-    Logo.updateImage(logo, URL.createObjectURL(this.logoInput.files[0]));
+    const url = URL.createObjectURL(this.logoInput.files[0]);
+    const Logo = new Picture("panel__logo", url);
     Logo.onload = function () {
         URL.revokeObjectURL(this.src);
-    }
+    };
+    this.logoContainer.appendChild(Logo.createPictureIcon());
 };
 
 PicturePanel.prototype.updateImages = function () {
 
     for (const picture in this.imagesInput.files) {
         if (this.imagesInput.files.hasOwnProperty(picture)) {
-            const Image = new Picture();
-            this.imagesContainer.appendChild(Image.createPictureFrame());
-            const image = this.imagesContainer.lastElementChild.firstElementChild;
-            Image.updateImage(image, URL.createObjectURL(this.imagesInput.files[picture]));
+            const url = URL.createObjectURL(this.imagesInput.files[picture]);
+            const Image = new Picture('panel__image', url);
             Image.onload = function () {
                 URL.revokeObjectURL(this.src);
-            }
+            };
+            this.imagesContainer.appendChild(Image.createPictureIcon());
         }
     }
 };
@@ -79,10 +81,10 @@ PicturePanel.prototype.deletePictureClick = function (event) {
 
 PicturePanel.prototype.editPictureClick = function (event) {
 
-    if(event.target.parentElement.parentElement.parentElement.classList.contains("sidebar__pictures__container")){
+    if (event.target.classList.contains("panel__image")) {
         Workspace.prototype.addImageToWorkspace
             .bind(this, event.target.parentElement.previousElementSibling, this.workspaceImageDiv)();
-    } else if (event.target.parentElement.parentElement.parentElement.classList.contains("sidebar__logo__container")) {
+    } else if (event.target.classList.contains("panel__logo")) {
         Workspace.prototype.addLogoToWorkspace
             .bind(this, event.target.parentElement.previousElementSibling, this.workspaceLogoDiv)();
     }

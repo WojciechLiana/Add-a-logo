@@ -1,10 +1,7 @@
-import {WorkspacePanel} from "./WorkspacePanel";
-
 export function Workspace(myWorkspacePanel) {
 
     this.workspaceImageDiv = document.querySelector(".workspace-image");
     this.workspaceLogoDiv = document.querySelector(".workspace-logo");
-    this.workspaceClearBtn = document.querySelector(".work-space__panel__clear");
     this.isImageLoaded = false;
     this.isLogoLoaded = false;
     this.workspacePanel = myWorkspacePanel;
@@ -16,14 +13,14 @@ export function Workspace(myWorkspacePanel) {
 
 Workspace.prototype.addImageToWorkspace = function (picture, container) {
 
-    WorkspacePanel.prototype.removeImage.bind(this)();
+    this.workspacePanel.removeImage.bind(this)();
     Workspace.prototype.addNewPicture.bind(this, container, picture)();
     Workspace.prototype.adjustImageSize.bind(this, picture)();
     if (this.isLogoLoaded) {
         const sliderValue = this.workspacePanel.workspaceSlider.value / 100;
         const logo = this.workspaceLogoDiv.firstElementChild;
         Workspace.prototype.adjustLogoSizeToImage.bind(this, logo, sliderValue)();
-        WorkspacePanel.prototype.showWorkspaceRangeInputAndSave.bind(this.workspacePanel)();
+        this.workspacePanel.showWorkspaceRangeInputAndSave.bind(this.workspacePanel)();
     }
     this.isImageLoaded = true;
 
@@ -31,7 +28,7 @@ Workspace.prototype.addImageToWorkspace = function (picture, container) {
 
 Workspace.prototype.addLogoToWorkspace = function (logo, container) {
 
-    WorkspacePanel.prototype.removeLogo.bind(this)();
+    this.workspacePanel.removeLogo.bind(this)();
     Workspace.prototype.addNewPicture.bind(this, container, logo)();
     Workspace.prototype.adjustLogoSize.bind(this, logo)();
     this.isLogoLoaded = true;
@@ -58,7 +55,7 @@ Workspace.prototype.adjustLogoSize = function (logo) {
         const sliderValue = this.workspacePanel.workspaceSlider.value / 100;
         Workspace.prototype.setElementLeftTopPosition(logo, 0, 0);
         Workspace.prototype.adjustLogoSizeToImage.bind(this, logo, sliderValue)();
-        WorkspacePanel.prototype.showWorkspaceRangeInputAndSave.bind(this.workspacePanel)();
+        this.workspacePanel.showWorkspaceRangeInputAndSave.bind(this.workspacePanel)();
     } else {
         Workspace.prototype.adjustLogoSizeWhenNoImage.bind(this, logo)();
     }
@@ -163,7 +160,7 @@ Workspace.prototype.calculateLogoTopPosition = function (event) {
     }
 };
 
-Workspace.prototype.moveLogoMouseUp = function (mouseMoveFnc, event) {
+Workspace.prototype.moveLogoMouseUp = function (mouseMoveFnc) {
 
     this.isMouseDownOnLogo = false;
     document.removeEventListener("mousemove", mouseMoveFnc);

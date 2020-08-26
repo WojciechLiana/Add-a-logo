@@ -1,33 +1,36 @@
-export function Picture() {
+export function Picture(kindOfPictureClass, pictureSrc) {
 
+    this.kindOfPicture = kindOfPictureClass;
+    this.pictureSrc = pictureSrc;
 }
 
-Picture.prototype.createPictureFrame = function () {
+Picture.prototype.createPictureIcon = function () {
 
-    const frame = document.createElement("div");
-    frame.classList.add("sidebar__pictures__container__frame", "my-1", "mx-1", "position-relative");
-    frame.appendChild(Picture.prototype.createImage());
-    frame.appendChild(Picture.prototype.createPicPanel());
+    const icon = document.createElement("div");
+    icon.classList.add("sidebar__pictures__container__icon", "my-1", "mx-1", "position-relative");
+    icon.appendChild(Picture.prototype.createImage(this.pictureSrc));
+    icon.appendChild(Picture.prototype.createPicturePanel(this.kindOfPicture));
 
-    return frame;
+    return icon;
 };
 
-Picture.prototype.createImage = function () {
+Picture.prototype.createImage = function (imageSrc) {
 
     const image = document.createElement("img");
     image.classList.add("sidebar__pictures__container__image");
+    image.src = imageSrc;
 
     return image;
 };
 
-Picture.prototype.createPicPanel = function () {
+Picture.prototype.createPicturePanel = function (kindOfPictureClass) {
 
-    const picPanel = document.createElement("div");
-    picPanel.classList.add("sidebar__pictures__container__panel", "invisible");
-    picPanel.appendChild(Picture.prototype.createEditBtn());
-    picPanel.appendChild(Picture.prototype.createDeleteBtn());
+    const picturePanel = document.createElement("div");
+    picturePanel.classList.add("sidebar__pictures__container__panel", "invisible");
+    picturePanel.appendChild(Picture.prototype.createEditBtn(kindOfPictureClass));
+    picturePanel.appendChild(Picture.prototype.createDeleteBtn());
 
-    return picPanel;
+    return picturePanel;
 };
 
 Picture.prototype.createDeleteBtn = function () {
@@ -39,10 +42,10 @@ Picture.prototype.createDeleteBtn = function () {
     return deleteBtn;
 };
 
-Picture.prototype.createEditBtn = function () {
+Picture.prototype.createEditBtn = function (kindOfPictureClass) {
 
     const editBtn = document.createElement("button");
-    editBtn.classList.add("sidebar__pictures__container__panel__editBtn");
+    editBtn.classList.add("sidebar__pictures__container__panel__editBtn", `${kindOfPictureClass}`);
     editBtn.innerText = ("E");
 
     return editBtn;
@@ -51,11 +54,4 @@ Picture.prototype.createEditBtn = function () {
 Picture.prototype.updateImage = function (frame, image) {
 
     frame.src = image;
-
-};
-
-Picture.prototype.handleClick = function (clickedElement) {
-
-    clickedElement.classList.toggle("invisible");
-
 };
