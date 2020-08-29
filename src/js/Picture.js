@@ -50,8 +50,3 @@ Picture.prototype.createEditBtn = function (kindOfPictureClass) {
 
     return editBtn;
 };
-
-Picture.prototype.updateImage = function (frame, image) {
-
-    frame.src = image;
-};

@@ -8,8 +8,6 @@ export function PicturePanel(panelName) {
     this.imagesContainer = document.querySelector(".sidebar__pictures__container");
     this.logoInput = document.querySelector("#logo");
     this.logoContainer = document.querySelector(".sidebar__logo__container");
-    this.workspaceImageDiv = document.querySelector(".workspace-image");
-    this.workspaceLogoDiv = document.querySelector(".workspace-logo");
 
 }
 
@@ -76,7 +74,7 @@ PicturePanel.prototype.clickOnPicture = function (event) {
 
 PicturePanel.prototype.deletePictureClick = function (event) {
 
-    event.target.parentElement.parentElement.remove();
+    event.currentTarget.firstElementChild.remove();
 };
 
 PicturePanel.prototype.editPictureClick = function (event) {

@@ -8,12 +8,11 @@ export function Workspace(myWorkspacePanel) {
     this.isMouseDownOnLogo = false;
     this.mousePosition = {};
     this.offset = {};
-
 }
 
 Workspace.prototype.addImageToWorkspace = function (picture, container) {
 
-    this.workspacePanel.removeImage.bind(this)();
+    Workspace.prototype.removeImage(container);
     Workspace.prototype.addNewPicture.bind(this, container, picture)();
     Workspace.prototype.adjustImageSize.bind(this, picture)();
     if (this.isLogoLoaded) {
@@ -28,7 +27,7 @@ Workspace.prototype.addImageToWorkspace = function (picture, container) {
 
 Workspace.prototype.addLogoToWorkspace = function (logo, container) {
 
-    this.workspacePanel.removeLogo.bind(this)();
+    Workspace.prototype.removeImage(container);
     Workspace.prototype.addNewPicture.bind(this, container, logo)();
     Workspace.prototype.adjustLogoSize.bind(this, logo)();
     this.isLogoLoaded = true;
@@ -107,6 +106,16 @@ Workspace.prototype.handleClearButton = function () {
 
     this.isLogoLoaded = false;
     this.isImageLoaded = false;
+    Workspace.prototype.removeImage(this.workspaceImageDiv);
+    Workspace.prototype.removeImage(this.workspaceLogoDiv);
+    this.workspacePanel.hideWorkspaceRangeInputAndSave();
+};
+
+Workspace.prototype.removeImage = function (container) {
+
+    if (container.hasChildNodes()) {
+        container.removeChild(container.firstChild);
+    }
 };
 
 Workspace.prototype.moveLogoMouseDown = function (mouseMoveFnc, event) {

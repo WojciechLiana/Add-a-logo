@@ -9,28 +9,6 @@ export function WorkspacePanel() {
     this.workspaceSave = document.querySelector(".work-space__panel__save");
 }
 
-WorkspacePanel.prototype.handleClearWorkspaceBtn = function () {
-
-    WorkspacePanel.prototype.removeImage.bind(this)();
-    WorkspacePanel.prototype.removeLogo.bind(this)();
-    WorkspacePanel.prototype.hideWorkspaceRangeInputAndSave.bind(this)();
-
-};
-
-WorkspacePanel.prototype.removeImage = function () {
-
-    if (this.workspaceImageDiv.hasChildNodes()) {
-        this.workspaceImageDiv.removeChild(this.workspaceImageDiv.firstChild);
-    }
-};
-
-WorkspacePanel.prototype.removeLogo = function () {
-
-    if (this.workspaceLogoDiv.hasChildNodes()) {
-        this.workspaceLogoDiv.removeChild(this.workspaceLogoDiv.firstChild);
-    }
-};
-
 WorkspacePanel.prototype.handleSlider = function () {
 
     Workspace.prototype.adjustLogoSizeToImage.bind(
