@@ -17,14 +17,14 @@ WorkspacePanel.prototype.handleSlider = function () {
 
 WorkspacePanel.prototype.hideWorkspaceRangeInputAndSave = function () {
 
-    this.workspaceSlider.parentElement.classList.add("invisible");
-    this.workspaceSave.classList.add("invisible");
+    this.workspaceSlider.parentElement.classList.add("d-none");
+    this.workspaceSave.classList.add("d-none");
 };
 
 WorkspacePanel.prototype.showWorkspaceRangeInputAndSave = function () {
 
-    this.workspaceSlider.parentElement.classList.remove("invisible");
-    this.workspaceSave.classList.remove("invisible");
+    this.workspaceSlider.parentElement.classList.remove("d-none");
+    this.workspaceSave.classList.remove("d-none");
 };
 
 WorkspacePanel.prototype.savePicture = function (logoContainer, imageContainer) {

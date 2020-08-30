@@ -17,7 +17,7 @@ Picture.prototype.createPictureIcon = function () {
 Picture.prototype.createImage = function (imageSrc) {
 
     const image = document.createElement("img");
-    image.classList.add("sidebar__pictures__container__image");
+    image.classList.add("sidebar__pictures__container__image", "position-relative");
     image.src = imageSrc;
 
     return image;

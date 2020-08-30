@@ -1,34 +1,26 @@
-canvas
-  width: 100%
-  height: 50vh
+html
+  overflow-x: hidden
 
-.sidebar__pictures__container__picture
-  height: 60px
-  width: 60px
+  .sidebar__pictures__container__image
+    height: 80px
+    width: 80px
 
-.sidebar__pictures__container__frame
-  height: 60px
-  width: 60px
+  .sidebar__pictures__container__panel
+    position: absolute
+    display: flex
+    bottom: 0
 
-.sidebar__pictures__container__image
-  height: 60px
-  width: 60px
+    .sidebar__pictures__container__panel__editBtn
+      width: 40px
+      height: 40px
 
-.sidebar__pictures__container__panel
-  position: absolute
-  display: flex
-  bottom: 0
+    .sidebar__pictures__container__panel__deleteBtn
+      width: 40px
+      height: 40px
 
-.sidebar__pictures__container__panel__editBtn,
-.sidebar__pictures__container__panel__deleteBtn
-  width: 45px
+  .work-space__sheet
+    display: grid
+    height: 65vh
 
-.work-space__sheet
-  display: grid
-  height: 65vh
-
-  .workspace-image, .workspace-logo
-    grid-area: 1/1
-
-    IMG
-      position: relative !important
+    .workspace-image, .workspace-logo
+      grid-area: 1/1

@@ -1,4 +1,5 @@
 import "../css/main.sass";
+import "../css/rangedInputStyle.css";
 import "../bootstrap/css/bootstrap.min.css"
 import {Workspace} from "./Workspace";
 import {PicturePanel} from "./PicturePanel";
