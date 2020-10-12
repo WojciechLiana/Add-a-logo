@@ -36,7 +36,7 @@ WorkspacePanel.prototype.savePicture = function (logoContainer, imageContainer) 
     canv.width = picture.naturalWidth;
     canv.height = picture.naturalHeight;
 
-    const context = canv.getContext('2d');
+    const context = canv.getContext("2d");
     context.drawImage(picture, 0, 0);
     context.drawImage(logo, logo.offsetLeft * scale, logo.offsetTop * scale, logo.clientWidth * scale, logo.clientHeight * scale);
     const download = document.getElementById("download");

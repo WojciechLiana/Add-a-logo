@@ -1,9 +1,14 @@
-html
-  overflow-x: hidden
+@mixin panelBtn
+  width: 40px
+  height: 40px
+  border: none
+  font-weight: bolder
+  color: white
 
+@mixin panelElement
   .sidebar__pictures__container__image
-    height: 80px
-    width: 80px
+   height: 80px
+   width: 80px
 
   .sidebar__pictures__container__panel
     position: absolute
@@ -11,16 +16,50 @@ html
     bottom: 0
 
     .sidebar__pictures__container__panel__editBtn
-      width: 40px
-      height: 40px
+      @include panelBtn
+      background-color: #17a2b8
 
     .sidebar__pictures__container__panel__deleteBtn
-      width: 40px
-      height: 40px
+      @include panelBtn
+      background-color: #dc3545
 
-  .work-space__sheet
-    display: grid
-    height: 65vh
 
-    .workspace-image, .workspace-logo
-      grid-area: 1/1
+html
+  overflow-x: hidden
+
+  .sidebar
+
+    .sidebar__logo
+
+      .sidebar__action-button:hover
+        background-color: #1d2124 !important
+
+      .sidebar__logo__container
+
+        @include panelElement
+
+    .sidebar__pictures
+
+      .sidebar__action-button:hover
+        background-color: #1d2124 !important
+
+      .sidebar__pictures__container
+
+        @include panelElement
+
+  .work-space
+
+
+    .work-space__sheet
+      display: grid
+      height: 65vh
+
+      .workspace-image, .workspace-logo
+       grid-area: 1/1
+
+       .sidebar__pictures__container__image
+        height: 80px
+        width: 80px
+
+  footer
+    color: #ffffff

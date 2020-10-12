@@ -1,6 +1,6 @@
 import "../css/main.sass";
 import "../css/rangedInputStyle.css";
-import "../bootstrap/css/bootstrap.min.css"
+import "../bootstrap/css/bootstrap.min.css";
 import {Workspace} from "./Workspace";
 import {PicturePanel} from "./PicturePanel";
 import {WorkspacePanel} from "./WorkspacePanel";
@@ -25,4 +25,5 @@ document.addEventListener("DOMContentLoaded", function () {
     document.addEventListener("mouseup", myWorkspace.moveLogoMouseUp.bind(myWorkspace, mouseMoveFnc));
     myWorkspacePanel.workspaceSave.addEventListener("click", myWorkspacePanel.savePicture.bind(
         this, myWorkspace.workspaceLogoDiv, myWorkspace.workspaceImageDiv));
+    window.addEventListener("resize", myWorkspace.handleClearButton.bind(myWorkspace));
 });
