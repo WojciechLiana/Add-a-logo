@@ -66,7 +66,6 @@ Workspace.prototype.adjustLogoSizeWhenNoImage = function (logo) {
     const scale = Workspace.prototype.calculateScalePicture.bind(this, logo)();
     const logoElement = this.workspaceLogoDiv.firstChild;
     Workspace.prototype.changePictureSize(logoElement, logo.naturalWidth / scale, logo.naturalHeight / scale);
-
 };
 
 Workspace.prototype.adjustLogoSizeToImage = function (logo, sliderValue) {
@@ -76,7 +75,6 @@ Workspace.prototype.adjustLogoSizeToImage = function (logo, sliderValue) {
     Workspace.prototype.setElementLeftTopPosition(logo, 0, 0);
     Workspace.prototype.changePictureSize(
         logoElement, logo.naturalWidth / adjustment * sliderValue, logo.naturalHeight / adjustment * sliderValue);
-
 };
 
 Workspace.prototype.calculateLogoSizeToImgSize = function (logo) {
@@ -85,7 +83,6 @@ Workspace.prototype.calculateLogoSizeToImgSize = function (logo) {
     const scaleY = logo.naturalHeight / this.workspaceImageDiv.firstElementChild.clientHeight;
 
     return scaleX >= scaleY ? scaleX : scaleY;
-
 };
 
 Workspace.prototype.changePictureSize = function (picture, width, height) {
@@ -99,7 +96,6 @@ Workspace.prototype.calculateScalePicture = function (imageToBeScaled) {
     const widthScale = imageToBeScaled.naturalWidth / this.workspaceImageDiv.clientWidth;
     const heightScale = imageToBeScaled.naturalHeight / this.workspaceImageDiv.clientHeight;
     return widthScale >= heightScale ? widthScale : heightScale;
-
 };
 
 Workspace.prototype.handleClearButton = function () {
@@ -126,7 +122,6 @@ Workspace.prototype.moveLogoMouseDown = function (mouseMoveFnc, event) {
         this.offset.Y = event.target.offsetTop - event.clientY;
         document.addEventListener("mousemove", mouseMoveFnc);
     }
-
 };
 
 Workspace.prototype.moveLogoMouseMove = function (mouseMoveEvent) {
@@ -173,11 +168,33 @@ Workspace.prototype.moveLogoMouseUp = function (mouseMoveFnc) {
 
     this.isMouseDownOnLogo = false;
     document.removeEventListener("mousemove", mouseMoveFnc);
-
 };
 
 Workspace.prototype.setElementLeftTopPosition = function (element, leftPosition, topPosition) {
 
     element.style.left = `${leftPosition}px`;
     element.style.top = `${topPosition}px`;
+};
+
+Workspace.prototype.resizeLogoOnly = function (logoContainer) {
+
+    const logo = logoContainer.firstElementChild.firstElementChild;
+    const container = this.workspaceLogoDiv;
+    Workspace.prototype.addLogoToWorkspace.bind(this, logo, container)();
+};
+
+Workspace.prototype.resizeLogoAndImage = function () {
+
+    const image = this.activeImage;
+    const container = this.workspaceImageDiv;
+    Workspace.prototype.addImageToWorkspace.bind(this, image, container)();
+};
+
+Workspace.prototype.resize = function (logoContainer) {
+
+    if (this.isImageLoaded) {
+        Workspace.prototype.resizeLogoAndImage.bind(this, logoContainer)();
+    } else if (this.isLogoLoaded) {
+        Workspace.prototype.resizeLogoOnly.bind(this, logoContainer)();
+    }
 };

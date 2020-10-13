@@ -82,6 +82,7 @@ PicturePanel.prototype.editPictureClick = function (event) {
     if (event.target.classList.contains("panel__image")) {
         Workspace.prototype.addImageToWorkspace
             .bind(this, event.target.parentElement.previousElementSibling, this.workspaceImageDiv)();
+        this.activeImage = event.target.parentElement.previousElementSibling;
     } else if (event.target.classList.contains("panel__logo")) {
         Workspace.prototype.addLogoToWorkspace
             .bind(this, event.target.parentElement.previousElementSibling, this.workspaceLogoDiv)();

@@ -25,5 +25,5 @@ document.addEventListener("DOMContentLoaded", function () {
     document.addEventListener("mouseup", myWorkspace.moveLogoMouseUp.bind(myWorkspace, mouseMoveFnc));
     myWorkspacePanel.workspaceSave.addEventListener("click", myWorkspacePanel.savePicture.bind(
         this, myWorkspace.workspaceLogoDiv, myWorkspace.workspaceImageDiv));
-    window.addEventListener("resize", myWorkspace.handleClearButton.bind(myWorkspace));
+    window.addEventListener("resize", myWorkspace.resize.bind(myWorkspace, myLogoPanel.logoContainer));
 });
